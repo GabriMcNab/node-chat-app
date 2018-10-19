@@ -10,12 +10,3 @@ describe('generateMessage', () => {
     expect(typeof message.createdAt).toBe('number');
   });
 });
-
-describe('generateLocationMessage', () => {
-  it('Should generate correct location object', () => {
-    const locationMessage = generateLocationMessage('Gabri', 1, 1);
-    const url = 'https://www.google.com/maps?q=1,1'
-    expect(locationMessage.from).toBe('Gabri');
-    expect(locationMessage.url).toBe(url);
-  });
-});

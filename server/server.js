@@ -4,7 +4,7 @@ const path = require('path');
 const socketIO = require('socket.io');
 
 const { Users } = require('./utils/users');
-const { generateMessage, generateLocationMessage } = require('./utils/message');
+const { generateMessage } = require('./utils/message');
 const { isRealString } = require('./utils/validation');
 
 const publicPath = path.join(__dirname, '../public');
@@ -40,13 +40,6 @@ io.on('connection', (socket) => {
       io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
     }
     callback();
-  });
-
-  socket.on('createLocationMessage', (coords) => {
-    const user = users.getUser(socket.id);
-    if (user) {
-      io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
-    }
   });
 
   socket.on('disconnect', () => {
