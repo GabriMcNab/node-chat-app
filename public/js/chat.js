@@ -17,7 +17,8 @@ function scrollToBottom() {
 
 socket.on('connect', function () {
   var params = $.deparam(window.location.search);
-  socket.emit('join', params, function(err) {
+  $('#room-name').text(params.room);
+  socket.emit('join', params, function (err) {
     if (err) {
       alert(err);
       window.location.href = '/';
@@ -28,11 +29,12 @@ socket.on('connect', function () {
 });
 
 socket.on('updateUserList', function (users) {
-  var ol = $('<ol></ol>');
-  users.forEach(function(user) {
-    ol.append($('<li></li>').text(user));
+  $('#users-list').empty();
+  users.forEach(function (user) {
+    var template = $('#user-template').html();
+    var html = Mustache.render(template, { user });
+    $('#users-list').append(html);
   });
-  $('#users').html(ol);
 })
 
 socket.on('disconnect', function () {
@@ -41,8 +43,15 @@ socket.on('disconnect', function () {
 
 socket.on('newMessage', function (message) {
   var fromattedTime = moment(message.createdAt).format('h:mm a');
+  var position;
+  if (socket.id === message.socketId) {
+    position = 'right';
+  } else {
+    position = 'left';
+  }
   var template = $('#message-template').html();
   var html = Mustache.render(template, {
+    position,
     text: message.text,
     from: message.from,
     createdAt: fromattedTime
