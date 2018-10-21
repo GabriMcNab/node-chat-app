@@ -10,22 +10,23 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body class="centered-form">
-  <div class="centered-form__form">
+<body class="home">
+  <div class="home__logo-box">
+    <img src="img/logo.png" alt="Node Chat logo" width="100%">
+  </div>
+  <div class="home__form">
     <form action="/chat.html">
-      <div class="form-field">
-        <h3>Join a Chat</h3>
+        <h3 class="heading-3">Join a Chat</h3>
+      <div class="form__field">
+        <label for="name">User Name</label>
+        <input class="form__input" type="text" name="name" autofocus autocomplete="off" />
       </div>
-      <div class="form-field">
-        <label for="name">Display Name</label>
-        <input type="text" name="name" autofocus autocomplete="off" />
+      <div class="form__field">
+        <label for="room">Choose Room Name</label>
+        <input class="form__input" type="text" name="room" maxlength="25"/>
       </div>
-      <div class="form-field">
-        <label for="room">Join by Room Name</label>
-        <input type="text" name="room" maxlength="25"/>
-      </div>
-      <div class="form-field">
-        <button>Join</button>
+      <div class="form__field">
+        <button class="button">Join</button>
       </div>
     </form>
   </div>
