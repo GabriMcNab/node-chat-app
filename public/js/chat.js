@@ -72,3 +72,8 @@ $('#message-form').on('submit', function (e) {
     messageTextbox.val('');
   });
 });
+
+$('#sidebar-toggle').on('click', function() {
+  $('.sidebar').toggleClass('show');
+  $('.hamburger').toggleClass('is-active');
+});

@@ -172,6 +172,7 @@ a {
 /* CHAT STYLES */
 
 .chat {
+  position: relative;
   display: flex;
 }
 
@@ -262,23 +263,27 @@ a {
 }
 
 .message__title {
-  margin-left: 3rem;
   display: flex;
 }
 
+.message__title-left {
+  margin-left: 3rem;
+}
+
 .message__title-right {
+  margin-right: 3rem;
   text-align: right;
   flex-direction: row-reverse;
 }
 
 .message__title-left h4 {
   font-weight: 600;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .message__title-right h4 {
   font-weight: 600;
-  margin-left: 10px;
+  margin-left: 1rem;
 }
 
 .message__title span {
@@ -327,26 +332,133 @@ a {
   border-bottom-color: #283c63;
 }
 
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+ .hamburger {
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  z-index: 2000;
+  padding: 1.5rem;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  border-radius: 50%;
+  overflow: visible; }
+  .hamburger:hover {
+    opacity: 0.7; }
+  .hamburger.is-active:hover {
+    opacity: 0.7; }
+  .hamburger.is-active .hamburger-inner,
+  .hamburger.is-active .hamburger-inner::before,
+  .hamburger.is-active .hamburger-inner::after {
+    background-color: #283c63; }
+
+.hamburger-box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative; }
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px; }
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 3.5rem;
+    height: 3px;
+    background-color: #283c63;
+    border-radius: 3px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease; }
+  .hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block; }
+  .hamburger-inner::before {
+    top: -10px; }
+  .hamburger-inner::after {
+    bottom: -10px; }
+    .hamburger--collapse .hamburger-inner {
+      top: auto;
+      bottom: 0;
+      transition-duration: 0.13s;
+      transition-delay: 0.13s;
+      transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+      .hamburger--collapse .hamburger-inner::after {
+        top: -20px;
+        transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear; }
+      .hamburger--collapse .hamburger-inner::before {
+        transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+    
+    .hamburger--collapse.is-active .hamburger-inner {
+      background-color: #fafafa;
+      transform: translate3d(0, -10px, 0) rotate(-45deg);
+      transition-delay: 0.22s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+      .hamburger--collapse.is-active .hamburger-inner::after {
+        background-color: #fafafa;
+        top: 0;
+        opacity: 0;
+        transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear; }
+      .hamburger--collapse.is-active .hamburger-inner::before {
+        background-color: #fafafa;
+        top: 0;
+        transform: rotate(-90deg);
+        transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1); }
+    
+
 /* MEDIA QUERIES */
 
-@media (max-width: 600px) {
-  * {
-    font-size: 1rem;
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 50%;
   }
 
-  .chat__sidebar {
+  .home__logo-box {
+    width: 30rem;
+  }
+
+  .hamburger {
+    display: block;
+    visibility: visible;
+  }
+
+  .button,
+  .button:link,
+  .button:visited {
+    font-size: 1.6rem;
+  }
+
+  .sidebar {
     display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
   }
 
-  .chat__footer {
-    flex-direction: column;
+  .sidebar__footer {
+    height: 67px;
   }
 
-  .chat__footer form {
-    margin-bottom: 10px;
+  .form {
+    max-width: 100%;
   }
+}
 
-  .chat__footer button {
-    margin-right: 0px;
-  }
+/* SHOW SIDEBAR */
+
+.show {
+  display: flex;
 }
